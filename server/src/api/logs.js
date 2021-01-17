@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const LogEntry = requrie("../models.LogEntry");
+const LogEntry = require("../models/LogEntry");
 
 const router = Router();
 
@@ -15,7 +15,10 @@ router.post("/", async (req, res) => {
     const createdEntry = await logEntry.save();
     res.json(createdEntry);
   } catch (error) {
-      console.log(error.constructor.name)
+    console.log(error.name);
+    if (error.name === "ValidationError") {
+      res.status(422);
+    }
     next(error);
   }
 });

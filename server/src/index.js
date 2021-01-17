@@ -9,6 +9,7 @@ require("dotenv").config();
 const middlewares = require("./middlewares");
 
 const logs = require("./api/logs");
+const logEntry = require("./models/LogEntry");
 
 const app = express();
 
@@ -27,9 +28,8 @@ app.use(
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.json({
-    message: "Nothing to get",
-  });
+  const entries = await logEntry.find();
+  res.json(entries);
 });
 
 app.use("/api/logs", logs);
@@ -38,7 +38,7 @@ app.use(middlewares.notFound);
 
 app.use(middlewares.errorHandler);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Server started on ${port}`);
 });
