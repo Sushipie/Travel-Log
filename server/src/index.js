@@ -28,8 +28,9 @@ app.use(
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  const entries = await logEntry.find();
-  res.json(entries);
+  res.json({
+    message: "Nothing to get",
+  });
 });
 
 app.use("/api/logs", logs);
