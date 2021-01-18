@@ -13,6 +13,8 @@ const logEntry = require("./models/LogEntry");
 
 const app = express();
 
+
+//password: EhFJ9YTraWFR7cbp
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,

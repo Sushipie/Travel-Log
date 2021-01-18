@@ -6,10 +6,6 @@ const requiredNumber = {
   required: true,
 };
 
-const defaultRequiredDate = {
-  type: Date,
-  default: Date.now,
-};
 
 const logEntrySchema = new Schema(
   {
